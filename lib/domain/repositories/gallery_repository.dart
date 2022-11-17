@@ -6,4 +6,7 @@ abstract class GalleryRepository {
     required int catIndex,
     int? pageNum,
   });
+
+  Single<List<Gallery>> getPopularListGalleries();
+  Single<List<Gallery>> getFrontPageListGalleries();
 }

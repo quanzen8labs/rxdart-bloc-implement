@@ -25,4 +25,11 @@ class GalleryRepositoryImpl extends GalleryRepository {
       return _parser.parseGalleries(response.body);
     });
   }
+
+  Single<List<Gallery>> getFrontPageListGalleries() {
+    return Single.fromCallable(() async {
+      http.Response response = await http.get(URLUtils.popularList());
+      return _parser.parseGalleries(response.body);
+    });
+  }
 }

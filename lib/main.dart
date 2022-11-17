@@ -8,7 +8,7 @@ import 'app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  testParser();
+  // testParser();
   runApp(const RBIApp());
 }
 
