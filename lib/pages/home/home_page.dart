@@ -46,6 +46,11 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           const SizedBox(height: 32),
+          StreamBuilder<int>(
+              stream: homeBloc.galleriesCount$,
+              builder: ((context, snapshot) =>
+                  Text('Total: ${snapshot.data ?? 0}'))),
+          const SizedBox(height: 32),
           StreamBuilder<List<Gallery>>(
             stream: homeBloc.popularGalleries$,
             builder: (context, snapshot) {
@@ -57,11 +62,21 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           const SizedBox(height: 24),
-          const Padding(
+          Container(
             padding: padding,
-            child: Text(
-              'Front Page',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            child: Row(
+              children: [
+                Text(
+                  'Front Page',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Spacer(),
+                TextButton(
+                    onPressed: () {
+                      homeBloc.reloadFrontPage();
+                    },
+                    child: Text('Reload'))
+              ],
             ),
           ),
           const SizedBox(height: 8),
